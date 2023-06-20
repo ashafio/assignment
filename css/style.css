@@ -1,5 +1,5 @@
 .header-section {
-    background-image: url(/imgs/banner/banner.png);
+    background-image:url("/imgs/banner/banner.png");
     background-repeat: no-repeat;
     height: 700px;
 }
