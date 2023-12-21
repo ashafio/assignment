@@ -1,0 +1,180 @@
+clc;
+clear all
+close all
+%u(n-2)
+n=-5:1:5;
+y=[zeros(1,7),ones(1,4)];
+subplot(4,4,1)
+stem(n,y)
+xlabel("n values");
+ylabel("amplitude");
+title("u(n-2)");
+
+%u(n-3)
+n=-5:1:5;
+y1=[zeros(1,8),ones(1,3)];
+subplot(4,4,2)
+stem(n,y1)
+xlabel("n values");
+ylabel("amplitude");
+title("u(n-3)");
+
+%u(n)
+n=0:1:10;
+y2=[ones(1,11)];
+subplot(4,4,3)
+stem(n,y2)
+xlabel("n values");
+ylabel("amplitude");
+title("u(n)");
+
+%u(n)-u(n-3)
+y3=y2-y
+subplot(4,4,4)
+stem(n,y3)
+xlabel("n values");
+ylabel("amplitude");
+title("u(n)-u(n-3)");
+
+%impulse signal
+imp_n=-5:1:5;
+y4=[zeros(1,5) 1 zeros(1,5)];
+subplot(4,4,5)
+stem(imp_n, y4)
+xlabel("n values");
+ylabel("amplitude");
+title("impulse");
+
+%exponential signal
+n=-100:100;
+alpha=0.9;
+xn=alpha.^n;
+subplot(4,4,6)
+stem(n,xn)
+
+%signum function
+signum_n=-6:1:6;
+y5=[-1 -1 -1 -1 -1 -1 0 1 1 1 1 1 1];
+subplot(4,4,7)
+stem(signum_n, y5)
+
+%sin wave
+t=0:0.01:1;
+f=3;
+xt=sin(2*pi*f*t);
+subplot(4,4,8)
+plot(t,xt)
+
+%cos wave
+a=3
+t=0:0.01:1;
+f=3;
+xt=a*cos(2*pi*f*t);
+subplot(4,4,9)
+plot(t,xt)
+
+%composite signal
+t=0:0.01:5;
+a1=2;
+a2=3;
+a3=4;
+f1=3;
+f2=10;
+f3=30;
+xt1=a1*sin(2*pi*f1*t);
+xt2=a2*sin(2*pi*f2*t);
+xt3=a3*sin(2*pi*f3*t);
+xt4=xt1+xt2+xt3;
+subplot(4,4,10)
+plot(t,xt4)
+
+%sin and cos wave
+a=2;
+t=0:0.01:1;
+f=3;
+xt1=a*sin(2*pi*f*t);
+xt2=a*cos(2*pi*f*t);
+subplot(4,4,11)
+plot(t,xt1, t,xt2)
+
+%unit ramp signal
+ramp_n=-5:1:5;
+y5=(ramp_n>=0).*ramp_n;
+subplot(4,4,12)
+stem(ramp_n,y5)
+
+%parabolic signal
+t=1:1:4;
+parabola=0.5*(t.^2);
+subplot(4,4,13)
+stem(t,parabola)
+
+___________________________________________________
+
+
+clc
+clear all
+close all
+
+
+%reverse unit step signal
+n=-5:5;
+un=[zeros(1,5),ones(1,6)];
+subplot(3,3,1)
+stem(n,un)
+title("unit step signal");
+
+u_reverse = fliplr(un);
+subplot(3,3,2)
+stem(n,u_reverse)
+title("reverse unit step signal");
+
+%even component of unit step signal
+u_et = 0.5*(un+u_reverse);
+subplot(3,3,3)
+stem(n,u_et)
+title("even component of unit step signal");
+
+%odd component of unit step signal
+u_ot = 0.5*(un-u_reverse);
+subplot(3,3,4)
+stem(n,u_ot)
+title("odd component of unit step signal");
+
+%reverse ramp signal
+n=-5:5;
+rn=(n>=0).*n;
+subplot(3,3,5)
+stem(n,rn)
+title("ramp signal");
+
+r_reverse=fliplr(rn);
+subplot(3,3,6)
+stem(n, r_reverse)
+title("reverse ramp signal");
+
+%even component of ramp signal
+r_et = 0.5*(rn+r_reverse);
+subplot(3,3,7)
+stem(n,r_et);
+title("even component of ramp signal");
+
+%odd component of ramp signal
+r_ot = 0.5*(rn-r_reverse);
+subplot(3,3,7)
+stem(n,r_ot);
+title("even component of ramp signal");
+
+%deterministic signal
+t=-10:0.02:10;
+y=sin(t);
+subplot(3,3,8)
+plot(t,y)
+title("deterministic signal");
+
+%non deterministic signal
+t=-10:0.02:10;
+x=rand(1,100);
+subplot(3,3,9)
+plot(x)
+title("non deterministic signal");
